@@ -11,7 +11,7 @@ INC_DIRS=./inc
 SRC:=$(wildcard ${SRC_DIRS}/*.cpp)
 
 compile: ${SRC}
-	@ ${CPP} ${CPPFLAGS} $^ -o ${OUTPUT_DIR}/${TARGET}
+	@ ${CPP} ${CPPFLAGS} -I${INC_DIRS} $^ -o ${OUTPUT_DIR}/${TARGET}
 
 ${OUTPUT_DIR}:
 	@ mkdir -p $@
@@ -24,3 +24,5 @@ ifneq ("$(wildcard $(OUTPUT_DIR))","")
 	@ rmdir --ignore-fail-on-non-empty ${OUTPUT_DIR}
 endif
 	
+run:
+	@${OUTPUT_DIR}/${TARGET}
